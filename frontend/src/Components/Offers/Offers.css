@@ -1,0 +1,217 @@
+.offers {
+    width: 65%;
+    display: flex;
+    margin: auto;
+    padding: 40px 140px; /* Reduced top/bottom padding */
+    background: linear-gradient(0deg, #ffffff 0%, #ebe3e0 100%);
+    border-radius: 20px;
+    margin-top: 30px; /* Reduced from 50px */
+    margin-bottom: 80px; /* Reduced from 100px */
+}
+
+.offers-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.offers-left h1 {
+    color: #171717;
+    font-size: 80px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.offers-left p {
+    color: #171717;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 15px; /* Reduced from 20px */
+    line-height: 1.4;
+}
+
+.offers-left button {
+    width: 282px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: #ff4141;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    border: none;
+    margin-top: 20px; /* Reduced from 30px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.offers-left button:hover {
+    background-color: #e03a3a;
+    transform: translateY(-2px);
+}
+
+.offers-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.offers-right img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media(max-width: 1280px){
+    .offers {
+        width: 80%;
+        padding: 30px 60px; /* Reduced padding */
+        margin-top: 20px; /* Reduced from 40px */
+        margin-bottom: 60px; /* Reduced from 80px */
+    }
+    
+    .offers-left h1 {
+        font-size: 60px;
+    }
+    
+    .offers-left p {
+        font-size: 20px;
+        margin-top: 12px; /* Reduced */
+    }
+    
+    .offers-right img {
+        width: 280px; /* Slightly reduced */
+    }
+    
+    .offers-left button {
+        width: 220px;
+        height: 50px;
+        font-size: 18px;
+        margin-top: 15px; /* Reduced */
+    }
+}
+
+@media(max-width: 1024px){
+    .offers {
+        width: 85%;
+        padding: 25px 40px; /* Reduced padding */
+        margin-top: 15px; /* Reduced from 30px */
+        margin-bottom: 40px; /* Reduced from 60px */
+        height: auto;
+        min-height: 250px; /* Reduced from 300px */
+    }
+    
+    .offers-left h1 {
+        font-size: 48px;
+    }
+    
+    .offers-left p {
+        font-size: 18px;
+        margin-top: 10px; /* Reduced from 15px */
+    }
+    
+    .offers-right img {
+        width: 220px; /* Reduced from 250px */
+    }
+    
+    .offers-left button {
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+        margin-top: 15px; /* Reduced from 20px */
+    }
+}
+
+@media(max-width: 800px){
+    .offers {
+        width: 90%;
+        padding: 20px 25px; /* Reduced padding */
+        margin-top: 15px; /* Reduced from 30px */
+        margin-bottom: 30px; /* Reduced from 50px */
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .offers-left h1 {
+        font-size: 36px;
+    }
+    
+    .offers-left p {
+        font-size: 16px;
+        margin-top: 8px; /* Reduced from 10px */
+    }
+    
+    .offers-right {
+        margin-top: 15px; /* Reduced from 20px */
+    }
+    
+    .offers-right img {
+        width: 180px; /* Reduced from 200px */
+    }
+    
+    .offers-left button {
+        width: 160px;
+        height: 40px;
+        font-size: 14px;
+        margin: 15px auto 0; /* Reduced top margin */
+    }
+}
+
+@media(max-width: 500px){
+    .offers {
+        width: 95%;
+        padding: 15px 20px; /* Reduced padding */
+        margin-top: 10px; /* Reduced from 20px */
+        margin-bottom: 25px; /* Reduced from 40px */
+        height: auto;
+        min-height: 180px; /* Reduced from 200px */
+    }
+    
+    .offers-left h1 {
+        font-size: 28px;
+    }
+    
+    .offers-left p {
+        font-size: 14px;
+        margin-top: 6px; /* Reduced from 8px */
+    }
+    
+    .offers-right img {
+        width: 140px; /* Reduced from 150px */
+    }
+    
+    .offers-left button {
+        width: 140px;
+        height: 40px;
+        font-size: 14px;
+        margin-top: 12px; /* Reduced from 15px */
+    }
+}
+
+@media(max-width: 380px){
+    .offers {
+        padding: 12px 15px; /* Reduced padding */
+        margin-top: 8px; /* Reduced from 15px */
+        margin-bottom: 20px; /* Reduced from 30px */
+    }
+    
+    .offers-left h1 {
+        font-size: 24px;
+    }
+    
+    .offers-left p {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    
+    .offers-right img {
+        width: 120px; /* Reduced from 130px */
+    }
+    
+    .offers-left button {
+        width: 130px;
+        height: 35px;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+}

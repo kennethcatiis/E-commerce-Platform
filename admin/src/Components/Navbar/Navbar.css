@@ -1,0 +1,88 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 60px;
+    box-shadow: 0 1px 3px -2px #000;
+    margin-bottom: 1px;
+    background: white;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-logo{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.nav-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.admin-text {
+    color: #ff0000;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+.nav-profile{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+@media(max-width: 800px){
+    .navbar{
+        padding: 15px 30px;
+    }
+
+    .nav-brand {
+        gap: 10px;
+    }
+
+    .nav-logo{
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-title {
+        font-size: 20px;
+    }
+
+    .admin-text {
+        font-size: 12px;
+    }
+
+    .nav-profile{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* For very small screens */
+@media(max-width: 500px){
+    .navbar {
+        padding: 10px 15px;
+    }
+    
+    .nav-title {
+        font-size: 18px;
+    }
+    
+    .admin-text {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,50 @@
+/* Admin.css */
+.admin {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Desktop */
+@media (min-width: 801px) {
+    .admin {
+        flex-direction: row;
+    }
+    
+    .admin > :first-child { /* Sidebar */
+        width: 250px;
+        min-width: 250px;
+    }
+    
+    .admin > :nth-child(2) { /* Content */
+        flex: 1;
+        padding: 20px;
+    }
+}
+
+/* Add this to Admin.css */
+@media (max-width: 800px) {
+    .admin {
+        flex-direction: column;
+    }
+    
+    /* Reduce sidebar space */
+    .sidebar {
+        padding: 10px 5px !important;
+        height: auto !important;
+        min-height: unset !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Reduce item spacing */
+    .sidebar-item {
+        margin: 0 3px !important;
+        padding: 6px 8px !important;
+        gap: 8px !important;
+    }
+    
+    /* Content area */
+    .admin > :nth-child(2) {
+        padding: 10px 15px;
+    }
+}

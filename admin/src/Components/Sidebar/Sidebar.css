@@ -1,0 +1,100 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    gap: 20px;
+    width: 100%;
+    max-width: 250px;
+    min-height: 100vh; /* Changed from height to min-height */
+    background: white;
+    text-decoration: none;
+    box-sizing: border-box; /* Include padding in height calculation */
+    position: relative; /* Ensure proper positioning */
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar a:link,
+.sidebar a:visited,
+.sidebar a:hover,
+.sidebar a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar-item {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #eae7e7;
+    gap: 20px;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+/* Optional: Add a filler to push content down */
+.sidebar::after {
+    content: '';
+    flex: 1; /* Take remaining space */
+    min-height: 0; /* Allow shrinking */
+}
+
+@media(max-width:800px){
+    .sidebar {
+        padding: 15px 10px; /* Reduced padding for mobile */
+        flex-direction: row;
+        width: 100%;
+        max-width: none;
+        height: auto; /* Auto height for mobile */
+        min-height: auto; /* Reset min-height for mobile */
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+        gap: 15px;
+        position: relative; /* Reset positioning for mobile */
+    }
+    
+    .sidebar::after {
+        display: none; /* Remove filler on mobile */
+    }
+
+    .sidebar-item {
+        margin: 0;
+        flex: 1;
+        max-width: 150px;
+        padding: 10px 8px;
+        gap: 8px;
+        min-width: 120px; /* Ensure minimum width */
+    }
+    
+    /* Adjust images for mobile */
+    .sidebar-item img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Adjust text for mobile */
+    .sidebar-item p {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+}
+
+/* If sidebar is inside a flex container */
+.parent-container {
+    display: flex;
+    min-height: 100vh; /* Parent should also have min-height */
+}
+
+/* For very tall screens */
+@media (min-height: 1000px) {
+    .sidebar {
+        min-height: 100vh;
+    }
+}
