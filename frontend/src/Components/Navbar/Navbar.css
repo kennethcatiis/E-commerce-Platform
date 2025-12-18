@@ -40,13 +40,13 @@
     height: 5px;
     border-radius: 3px;
     background-color: #ff4141;
-
 }
 
 .navbar-login-cart {
     display: flex;
     align-items: center;
-    gap: 45px;
+    gap: 20px;
+    position: relative;
 }
 
 .navbar-login-cart button {
@@ -66,14 +66,36 @@
     color: white;
 }
 
+.navbar-login-cart img {
+    width: 30px;
+    height: 30px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.navbar-profile-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.navbar-profile-icon:hover {
+    transform: scale(1.1);
+}
+
 .navbar-cart-count {
     width: 23px;
     height: 23px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -35px;
-    margin-left: -55px;
+    position: absolute;
+    top: -10px;
     border-radius: 20px;
     background: red;
     font-size: 12px;
@@ -81,6 +103,18 @@
     color: white;
 }
 
+/* When user is logged out (no profile icon) - MOVED RIGHT */
+.navbar-cart-count {
+    right: -10px;
+    top: -2px;
+}
+
+/* When user is logged in (profile icon exists) - MOVED RIGHT */
+.navbar-login-cart:has(.profile-link) .navbar-cart-count {
+    right: 35px;
+}
+
+/* Update media queries */
 @media(max-width:1280px){
     .navbar{
         padding: 12px 50px;
@@ -96,16 +130,30 @@
         font-size: 16px;
     }
     .navbar-login-cart{
-        gap:30px;
+        gap:20px;
     }
     .navbar-login-cart button{
         width: 120px;
         height: 45px;
         font-size: 16px;
     }
+    .navbar-login-cart img {
+        width: 25px;
+        height: 25px;
+    }
+    .navbar-profile-icon {
+        width: 25px;
+        height: 25px;
+    }
+    
     .navbar-cart-count{
-        margin-left: -40px;
-        font-size: 12px;
+        top: -6px;
+        right: -11px;
+        font-size: 10px;
+    }
+    
+    .navbar-login-cart:has(.profile-link) .navbar-cart-count{
+        right: 40px !important;
     }
 }
 
@@ -123,12 +171,24 @@
         height: 35px;
         font-size: 14px;
     }
-    .navbar-login-cart img{
-        width: 30px;
+    .navbar-login-cart img {
+        width: 22px;
+        height: 22px;
     }
+    .navbar-profile-icon {
+        width: 22px;
+        height: 22px;
+    }
+    
     .navbar-cart-count{
         width: 18px;
         height: 18px;
+        top: -6px;
+        right: -5px;
+    }
+    
+    .navbar-login-cart:has(.profile-link) .navbar-cart-count{
+        right: 25px;
     }
 }
 
@@ -166,6 +226,18 @@
         transform: rotate(90deg);
     }
     
+    .navbar-login-cart {
+        gap: 15px;
+    }
+    
+    .navbar-cart-count {
+        top: -8px;
+        right: -5px;
+    }
+    
+    .navbar-login-cart:has(.profile-link) .navbar-cart-count {
+        right: 25px;
+    }
 }
 
 @media(max-width:500px){
@@ -185,5 +257,34 @@
 
     .navbar-login-cart{
         transform: scale(0.8);  
+        gap: 10px;
+    }
+    
+    .navbar-login-cart button{
+        width: 60px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    .navbar-login-cart img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .navbar-profile-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .navbar-cart-count{
+        width: 16px;
+        height: 16px;
+        top: -6px;
+        right: -10px;
+        font-size: 10px;
+    }
+    
+    .navbar-login-cart:has(.profile-link) .navbar-cart-count{
+        right: 20px;
     }
 }

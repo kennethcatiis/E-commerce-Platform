@@ -6,8 +6,6 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const { log } = require("console");
-const { useResolvedPath } = require("react-router-dom");
 
 app.use(express.json());
 app.use(cors());
@@ -267,23 +265,124 @@ app.get('/popular', async(req, res)=>{
     res.send(popular);
 })
 
+// ========== IMPORTANT: Define fetchUser BEFORE using it ==========
 // Middleware to fetch User
 
-    const fetchUser = async(req, res, next)=>{
-        const token = req.header('auth-token');
-        if (!token){
-            res.status(401).send({errors: "Invalid Token. Logout and Login again."})
-        }
-        else{
-            try{
-                const data = jwt.verify(token, 'secret_ecom');
-                req.user = data.user;
-                next();
-            } catch(error){
-                res.status(401).send({errors:"Invalid Token. Logout and Login again."})
-            }
+const fetchUser = async(req, res, next)=>{
+    const token = req.header('auth-token');
+    if (!token){
+        res.status(401).send({errors: "Invalid Token. Logout and Login again."})
+    }
+    else{
+        try{
+            const data = jwt.verify(token, 'secret_ecom');
+            req.user = data.user;
+            next();
+        } catch(error){
+            res.status(401).send({errors:"Invalid Token. Logout and Login again."})
         }
     }
+}
+
+// ========== USER PROFILE ENDPOINTS (must come AFTER fetchUser definition) ==========
+
+// Get user data
+app.post('/getuser', fetchUser, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password -cartData');
+        
+        if (!user) {
+            return res.status(404).json({ success: false, error: "User not found" });
+        }
+        
+        res.json({
+            success: true,
+            user: user
+        });
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Update user data
+app.post('/updateuser', fetchUser, async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+        const userId = req.user.id;
+        
+        // Check if email is already taken by another user
+        if (email) {
+            const existingUser = await User.findOne({ 
+                email: email,
+                _id: { $ne: userId } // Exclude current user
+            });
+            
+            if (existingUser) {
+                return res.status(400).json({ 
+                    success: false, 
+                    error: "Email already in use" 
+                });
+            }
+        }
+        
+        const updateData = {};
+        
+        if (name) updateData.name = name;
+        if (email) updateData.email = email;
+        if (password) updateData.password = password;
+        
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            updateData,
+            { new: true, select: '-password -cartData' }
+        );
+        
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, error: "User not found" });
+        }
+        
+        console.log(`User ${userId} updated`);
+        
+        res.json({
+            success: true,
+            message: "Profile updated successfully",
+            user: updatedUser
+        });
+        
+    } catch (error) {
+        console.error("Error updating user:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Delete user account
+app.delete('/deleteuser', fetchUser, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        
+        // Delete user
+        const deletedUser = await User.findByIdAndDelete(userId);
+        
+        if (!deletedUser) {
+            return res.status(404).json({ success: false, error: "User not found" });
+        }
+        
+        // Delete user's transactions
+        await Transaction.deleteMany({ userId: userId });
+        
+        console.log(`User ${userId} deleted`);
+        
+        res.json({
+            success: true,
+            message: "Account deleted successfully"
+        });
+        
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
 
 // Adding Items in Cart
 

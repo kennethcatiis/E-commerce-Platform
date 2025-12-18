@@ -1,2 +1,13 @@
-### Create Product
-GET http://localhost:4000/popular
+@baseUrl = http://localhost:4000
+@contentType = application/json
+
+POST {{baseUrl}}/addproduct
+Content-Type: {{contentType}}
+
+{
+  "name": "test-product-1",
+  "image": "C:/Users/Kenneth/Downloads/e-commerce_app/backend/logo.png",
+  "category": "womens",
+  "new_price": 34.99,
+  "old_price": 44.99
+}

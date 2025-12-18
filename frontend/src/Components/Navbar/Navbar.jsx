@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import logo from '../Assets/Frontend_Assets/logo.png'  
 import cart_icon from '../Assets/Frontend_Assets/cart_icon.png'
+import profile_icon from '../Assets/Frontend_Assets/user.png'
 import { ShopContext } from '../../Context/ShopContext'
 import nav_dropdown_icon from '../Assets/Frontend_Assets/nav_dropdown.png'
 
@@ -93,12 +94,27 @@ const Navbar = () => {
                     </li>
                 )}
             </ul>
-            <div className="navbar-login-cart">
-                {localStorage.getItem('auth-token')?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>:<Link to='/login'> <button>Login</button> </Link>}
+                <div className="navbar-login-cart">
+                {localStorage.getItem('auth-token') ? (
+                    <>
+                        <button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <Link to='/login'> 
+                        <button>Login</button> 
+                    </Link>
+                )}
                 <Link to='/cart'> 
                     <img src={cart_icon} alt="Cart" />
                 </Link>
                 <div className="navbar-cart-count">{getTotalCartItems()}</div>
+                {localStorage.getItem('auth-token') && (
+                    <Link to='/userprofile' className="profile-link">
+                        <img src={profile_icon} alt="Profile" className="navbar-profile-icon" />
+                    </Link>
+                )}
             </div>
         </div>
     )
